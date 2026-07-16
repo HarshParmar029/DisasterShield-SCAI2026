@@ -45,7 +45,7 @@ Low-cost Raspberry Pi based edge computing system that:
 - Real satellite data integration
 
 ## Team
-Solo Project by [Your Full Name]
+Solo Project by Harsh C. Parmar
 
 ---
 **SCAI 2026 Submission**  
