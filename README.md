@@ -1,4 +1,4 @@
-ï»¿# DisasterShield â€” SCAI 2026
+# DisasterShield — SCAI 2026
 
 **AI-Powered Multi-Hazard Early Warning System with Edge Intelligence & Sensor Fusion**
 
@@ -9,7 +9,7 @@
 
 ## Problem Statement
 
-Climate change is increasing the frequency of natural disasters â€” floods, wildfires, droughts â€” across India, causing heavy loss of life, crops, and property. Existing early-warning systems are often expensive, centralized, and too slow to give localized, real-time alerts to the communities that need them most.
+Climate change is increasing the frequency of natural disasters — floods, wildfires, droughts — across India, causing heavy loss of life, crops, and property. Existing early-warning systems are often expensive, centralized, and too slow to give localized, real-time alerts to the communities that need them most.
 
 ## Solution
 
@@ -28,7 +28,7 @@ DisasterShield is a low-cost, AI-based multi-hazard early warning system combini
 
 ## Dataset
 
-- **Fire Dataset** (Kaggle, phylake1337/fire-dataset) â€” 755 fire images, 244 non-fire images
+- **Fire Dataset** (Kaggle, phylake1337/fire-dataset) — 755 fire images, 244 non-fire images
 - Images resized to 160x160, augmented with rotation/zoom/flip during training
 
 ## Model & Results
@@ -39,6 +39,8 @@ DisasterShield is a low-cost, AI-based multi-hazard early warning system combini
 - **Validation accuracy: 97.99%**
 - Exported to TensorFlow Lite (`models/fire_smoke_model.tflite`, ~9.2 MB) for lightweight inference
 
+![Training Curves](training_curves.png)
+
 ## Current Status (as of July 2026)
 
 - [x] Environment setup and repo structure
@@ -48,8 +50,8 @@ DisasterShield is a low-cost, AI-based multi-hazard early warning system combini
 - [x] Flask dashboard with live video feed and risk overlay
 - [x] Sensor simulation module (temperature, humidity, smoke, rain, soil moisture)
 - [x] Fusion logic combining AI confidence + sensor trends into a risk level (Low/Medium/High)
-- [ ] Real hardware sensor integration (Raspberry Pi + physical sensors) â€” planned next
-- [ ] Remote sensing / NDVI-based wide-area risk mapping â€” planned next
+- [ ] Real hardware sensor integration (Raspberry Pi + physical sensors) — planned next
+- [ ] Remote sensing / NDVI-based wide-area risk mapping — planned next
 
 ## Project Structure
 ## How to Run
@@ -70,9 +72,9 @@ Then open `http://127.0.0.1:5000` in a browser.
 
 ## Why This Matters
 
-DisasterShield aligns with SCAI 2026's theme of Connected Intelligence â€” combining smart sensing, trained AI, and sensor fusion to build a system with real, localized societal impact for disaster response in vulnerable communities.
+DisasterShield aligns with SCAI 2026's theme of Connected Intelligence — combining smart sensing, trained AI, and sensor fusion to build a system with real, localized societal impact for disaster response in vulnerable communities.
 
 ---
 
 **Solo Developer:** Harsh C. Parmar
-**Submitted for:** SCAI 2026 â€” Project Challenge & Technical Showcase, IEEE SVNIT Surat
+**Submitted for:** SCAI 2026 — Project Challenge & Technical Showcase, IEEE SVNIT Surat
