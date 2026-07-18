@@ -19,7 +19,7 @@ DisasterShield is a low-cost, AI-based multi-hazard early warning system that co
 
 - Real-time fire/smoke detection using a trained deep learning model
 - Multi-sensor data fusion for temperature, smoke, rain, and soil moisture trends
-- Live web dashboard for monitoring and instant risk-level alerts
+- A live web dashboard for monitoring and instant risk-level alerts
 
 ---
 
@@ -44,8 +44,8 @@ DisasterShield is a low-cost, AI-based multi-hazard early warning system that co
 
 - **Base Model:** MobileNetV2 (ImageNet pretrained)
 - **Training Accuracy:** ~99%
-- **Validation Accuracy:** 96.98% - 97.99%
-- **Model Size:** ~9.2 MB (TensorFlow Lite format) — Edge ready for Raspberry Pi
+- **Validation Accuracy:** 96.98% – 97.99%
+- **Model Size:** ~9.2 MB (TensorFlow Lite format) — edge-ready for Raspberry Pi
 
 ![Training Curves](training_curves.png)
 
@@ -65,16 +65,21 @@ DisasterShield is a low-cost, AI-based multi-hazard early warning system that co
 ---
 
 ## Project Structure
+
+```
 DisasterShield-SCAI2026/
 ├── app.py                 # Main Flask dashboard
 ├── vision/                # Computer vision scripts
 ├── sensor_sim/            # Sensor simulation & fusion
 ├── models/                # fire_smoke_model.tflite
-├── notebooks/              # train_model.ipynb
-├── data/                   # Training dataset
+├── notebooks/             # train_model.ipynb
+├── data/                  # Training dataset
 ├── training_curves.png
 ├── requirements.txt
 └── README.md
+```
+
+---
 
 ## How to Run
 
@@ -85,17 +90,21 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Open browser -> http://127.0.0.1:5000
+Then open your browser to `http://127.0.0.1:5000`
+
+---
 
 ## Support Requested
 
-- Guidance on improving model robustness with more diverse non-fire data
+- Guidance on improving model robustness with more diverse non-fire training data
 - Suggestions for budget-friendly real sensors (Raspberry Pi compatible)
-- Feedback on risk-fusion logic for flood/drought scenarios
+- Feedback on the risk-fusion logic for flood/drought scenarios
+
+---
 
 ## Why This Matters
 
-DisasterShield aligns with SCAI 2026's theme "Connected Intelligence" — combining smart sensing, trained AI, and sensor fusion to create a system with real societal impact for vulnerable communities.
+DisasterShield aligns with SCAI 2026's theme "Connected Intelligence" — combining smart sensing, trained AI, and sensor fusion to build a system with real, localized societal impact for disaster response in vulnerable communities.
 
 ---
 
