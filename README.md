@@ -44,10 +44,17 @@ DisasterShield is a low-cost, AI-based multi-hazard early warning system that co
 
 - **Base Model:** MobileNetV2 (ImageNet pretrained)
 - **Training Accuracy:** ~99%
-- **Validation Accuracy:** 96.98% – 97.99%
+- **Validation Accuracy:** 96.98% - 97.99%
 - **Model Size:** ~9.2 MB (TensorFlow Lite format) — edge-ready for Raspberry Pi
 
+### Training Curves
 ![Training Curves](training_curves.png)
+
+### Confusion Matrix
+![Confusion Matrix](confusion_matrix.png)
+
+### Sample Predictions
+![Sample Predictions](sample_predictions.png)
 
 **Multi-Hazard Risk Engine** — Camera (AI Vision) + Simulated Sensors (Temperature, Humidity, Smoke, Rain, Soil Moisture) fused into a single risk level (Low / Medium / High).
 
@@ -65,20 +72,6 @@ DisasterShield is a low-cost, AI-based multi-hazard early warning system that co
 ---
 
 ## Project Structure
-
-```
-DisasterShield-SCAI2026/
-├── app.py                 # Main Flask dashboard
-├── vision/                # Computer vision scripts
-├── sensor_sim/            # Sensor simulation & fusion
-├── models/                # fire_smoke_model.tflite
-├── notebooks/             # train_model.ipynb
-├── data/                  # Training dataset
-├── training_curves.png
-├── requirements.txt
-└── README.md
-```
-
 ---
 
 ## How to Run
