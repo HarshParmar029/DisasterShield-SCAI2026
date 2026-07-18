@@ -1,45 +1,49 @@
 ﻿from flask import Flask, Response, render_template_string
 import cv2
 import numpy as np
+import tensorflow as tf
 
 app = Flask(__name__)
 
-def detect_fire_smoke(frame):
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    
-    lower_fire = np.array([0, 50, 50])
-    upper_fire = np.array([35, 255, 255])
-    mask_fire = cv2.inRange(hsv, lower_fire, upper_fire)
-    
-    lower_smoke = np.array([0, 0, 100])
-    upper_smoke = np.array([180, 50, 220])
-    mask_smoke = cv2.inRange(hsv, lower_smoke, upper_smoke)
-    
-    mask = cv2.bitwise_or(mask_fire, mask_smoke)
-    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    
-    score = 0
-    for cnt in contours:
-        area = cv2.contourArea(cnt)
-        if area > 800:
-            x, y, w, h = cv2.boundingRect(cnt)
-            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 3)
-            score = max(score, min(area/8000, 1.0))
-    
-    if score > 0.45:
-        status = "HIGH RISK - FIRE/SMOKE"
+# Load TFLite model
+interpreter = tf.lite.Interpreter(model_path="models/fire_smoke_model.tflite")
+interpreter.allocate_tensors()
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+
+IMG_SIZE = (160, 160)
+
+def predict_frame(frame):
+    img = cv2.resize(frame, IMG_SIZE)
+    img = img.astype(np.float32) / 255.0
+    img = np.expand_dims(img, axis=0)
+
+    interpreter.set_tensor(input_details[0]["index"], img)
+    interpreter.invoke()
+    output = interpreter.get_tensor(output_details[0]["index"])
+    prob = float(output[0][0])
+    return prob
+
+def annotate_frame(frame):
+    prob = predict_frame(frame)
+
+    # class_indices was {"fire_images": 0, "non_fire_images": 1}
+    # sigmoid output close to 0 -> fire, close to 1 -> non-fire
+    fire_confidence = 1.0 - prob
+
+    if fire_confidence > 0.7:
+        status = "HIGH RISK - FIRE DETECTED"
         color = (0, 0, 255)
-    elif score > 0.2:
-        status = "MEDIUM RISK - Possible Smoke"
+    elif fire_confidence > 0.4:
+        status = "MEDIUM RISK - Possible Fire"
         color = (0, 165, 255)
     else:
         status = "NORMAL"
         color = (0, 255, 0)
-    
-    cv2.putText(frame, status, (30, 50), cv2.FONT_HERSHEY_SIMPLEX, 1.1, color, 3)
-    cv2.putText(frame, f"Confidence: {int(score*100)}%", (30, 90), 
+
+    cv2.putText(frame, status, (30, 50), cv2.FONT_HERSHEY_SIMPLEX, 1.0, color, 3)
+    cv2.putText(frame, f"Confidence: {int(fire_confidence*100)}%", (30, 90),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.85, color, 2)
-    
     return frame
 
 def generate_frames():
@@ -48,7 +52,7 @@ def generate_frames():
         success, frame = cap.read()
         if not success:
             break
-        processed_frame = detect_fire_smoke(frame)
+        processed_frame = annotate_frame(frame)
         ret, buffer = cv2.imencode(".jpg", processed_frame)
         frame_bytes = buffer.tobytes()
         yield (b"--frame\r\n"
@@ -70,7 +74,7 @@ def index():
     </head>
     <body>
         <h1>DisasterShield - SCAI 2026</h1>
-        <h2>Real-time Multi-Hazard Detection System</h2>
+        <h2>AI-Powered Real-time Fire Detection (MobileNetV2)</h2>
         <div class="container">
             <img src="/video_feed" width="900">
         </div>
@@ -85,6 +89,6 @@ def video_feed():
     return Response(generate_frames(), mimetype="multipart/x-mixed-replace; boundary=frame")
 
 if __name__ == "__main__":
-    print("DisasterShield Dashboard Started!")
+    print("DisasterShield Dashboard Started (AI Model)!")
     print("Open Browser -> http://127.0.0.1:5000")
     app.run(debug=True, port=5000)
