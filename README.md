@@ -109,8 +109,5 @@ Made with care for innovation and community safety.
 
 ## Presentation
 
-[View Full Presentation (PDF)](DisasterShield_SCAI2026.pdf)
-
-## Presentation
-
 [View Full Presentation (PDF)](DisasterShield_SCAI2026_Harsh_Parmar.pdf)
+
