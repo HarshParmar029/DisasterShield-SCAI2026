@@ -1,73 +1,76 @@
-# DisasterShield — SCAI 2026
+﻿# DisasterShield — SCAI 2026
 
-**AI-Powered Multi-Hazard Early Warning System with Edge Intelligence & Remote Sensing**
+**AI-Powered Multi-Hazard Early Warning System with Edge Intelligence & Sensor Fusion**
 
 **SCAI 2026** | **Track 1: Smart Sensing & Intelligent Electronic Systems**
 **IEEE Student Branch, SVNIT Surat**
 
 ---
 
-## 🧭 Problem Statement
+## Problem Statement
 
 Climate change is increasing the frequency of natural disasters — floods, wildfires, droughts — across India, causing heavy loss of life, crops, and property. Existing early-warning systems are often expensive, centralized, and too slow to give localized, real-time alerts to the communities that need them most.
 
-## 💡 Proposed Solution
+## Solution
 
-DisasterShield aims to be a **low-cost, edge-AI based multi-hazard detection system** that combines:
-- Real-time computer vision (smoke/fire detection)
-- Lightweight deep learning models deployable on edge hardware
-- Multi-sensor data fusion for flood/drought risk
-- Remote sensing (NDVI-style) analysis for wider-area context
+DisasterShield is a low-cost, AI-based multi-hazard early warning system combining:
+- Real-time fire/smoke detection using a trained deep learning model
+- Multi-sensor data fusion for temperature, smoke, rain, and soil moisture trends
+- A live web dashboard for monitoring and risk-level alerts
 
-The goal is a system that works **offline**, is **cheap to deploy**, and gives **localized alerts** faster than traditional infrastructure.
+## Tech Stack
 
-## 🛠 Planned Tech Stack
-
-- **Language:** Python 3
+- **Language:** Python 3.13
 - **Computer Vision:** OpenCV
-- **AI/ML:** Lightweight CNN (MobileNet-based), converted to TensorFlow Lite for edge inference
-- **Data Fusion:** Rule-based + ML hybrid logic for combining sensor + vision signals
-- **Dashboard/Alerts:** Flask-based web dashboard
-- **Datasets (identified):**
-  - Kaggle Wildfire Dataset (smoke & fire images/video)
-  - PlantVillage Dataset (for future crop-stress extension)
-  - Synthetic sensor data (DHT22, soil moisture, rain, MQ-135) for flood/drought simulation
+- **AI/ML:** MobileNetV2 (transfer learning), trained with TensorFlow/Keras, converted to TensorFlow Lite for edge inference
+- **Dashboard:** Flask, live MJPEG video streaming
+- **Sensor Fusion:** Custom rule-based risk engine combining vision confidence with simulated sensor readings
 
-## 📊 Current Status (as of July 2026)
+## Dataset
 
-This project is in the **planning and design phase**. Problem scoping, track alignment, dataset identification, and system architecture are complete. Implementation is starting now, guided by the SCAI workshop series (Basic Electronics, Python + OpenCV, ML Frameworks, DL Architectures).
+- **Fire Dataset** (Kaggle, phylake1337/fire-dataset) — 755 fire images, 244 non-fire images
+- Images resized to 160x160, augmented with rotation/zoom/flip during training
 
-**Immediate next steps:**
-- [ ] Set up repo structure and environment
-- [ ] Build initial OpenCV pipeline for smoke/fire detection on sample data
-- [ ] Train a first-pass lightweight CNN on the Kaggle Wildfire dataset
-- [ ] Build sensor-data simulation module for flood/drought logic
-- [ ] Basic Flask dashboard for visualizing detections/alerts
+## Model & Results
 
-## 📁 Planned Project Structure
+- Base: MobileNetV2 (ImageNet pretrained), frozen backbone + custom classification head
+- Trained for 10 epochs on the fire dataset
+- **Training accuracy: 99.87%**
+- **Validation accuracy: 97.99%**
+- Exported to TensorFlow Lite (`models/fire_smoke_model.tflite`, ~9.2 MB) for lightweight inference
 
+## Current Status (as of July 2026)
+
+- [x] Environment setup and repo structure
+- [x] Live camera capture pipeline (OpenCV)
+- [x] MobileNetV2 model trained and validated (97.99% val accuracy)
+- [x] TFLite conversion for edge-ready inference
+- [x] Flask dashboard with live video feed and risk overlay
+- [x] Sensor simulation module (temperature, humidity, smoke, rain, soil moisture)
+- [x] Fusion logic combining AI confidence + sensor trends into a risk level (Low/Medium/High)
+- [ ] Real hardware sensor integration (Raspberry Pi + physical sensors) — planned next
+- [ ] Remote sensing / NDVI-based wide-area risk mapping — planned next
+
+## Project Structure
+## How to Run
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python app.py
 ```
-DisasterShield-SCAI2026/
-├── vision/          # OpenCV detection scripts
-├── models/          # TF Lite models
-├── sensor_sim/      # Simulated sensor data & fusion logic
-├── dashboard/       # Flask web interface
-├── notebooks/       # Training/experiment notebooks
-├── utils/           # Helper functions & alert logic
-├── main.py
-├── requirements.txt
-└── README.md
-```
+Then open `http://127.0.0.1:5000` in a browser.
 
-## 🙋 Support Requested
+## Support Requested
 
-- Guidance on optimized lightweight CNN architectures for edge deployment (Raspberry Pi 4/5 class hardware)
-- Suggestions for better/alternative datasets beyond Kaggle Wildfire for robustness
-- Best practices for sensor data simulation that realistically mimics field noise
+- Guidance on improving model robustness with more diverse non-fire training data
+- Suggestions for real sensor hardware suited for a student budget
+- Feedback on the risk-fusion logic for flood/drought scenarios
 
-## 🎯 Why This Matters
+## Why This Matters
 
-DisasterShield directly aligns with SCAI 2026's theme of **Connected Intelligence** — bringing together smart sensing, edge AI, and remote sensing to build systems with real, localized societal impact.
+DisasterShield aligns with SCAI 2026's theme of Connected Intelligence — combining smart sensing, trained AI, and sensor fusion to build a system with real, localized societal impact for disaster response in vulnerable communities.
 
 ---
 
