@@ -78,3 +78,15 @@ DisasterShield aligns with SCAI 2026's theme of Connected Intelligence — combini
 
 **Solo Developer:** Harsh C. Parmar
 **Submitted for:** SCAI 2026 — Project Challenge & Technical Showcase, IEEE SVNIT Surat
+
+
+## Model Performance & Results
+
+- **Validation Accuracy:** 96.98% - 97.99% (multiple training runs)
+- **Training Accuracy:** ~99%
+- **Model:** MobileNetV2 (Transfer Learning) + Custom Classification Head
+- **Exported to:** TensorFlow Lite (`models/fire_smoke_model.tflite`) â€” Edge-ready for Raspberry Pi
+
+![Training Curves](training_curves.png)
+
+**Multi-Hazard Risk Engine** â€” Camera (AI Vision) + Simulated Sensors (Temperature, Humidity, Smoke, Rain, Soil Moisture) fused into a single risk level.
