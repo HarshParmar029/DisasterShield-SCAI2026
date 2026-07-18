@@ -106,3 +106,7 @@ DisasterShield aligns with SCAI 2026's theme "Connected Intelligence" — combin
 **IEEE Student Branch, SVNIT Surat**
 
 Made with care for innovation and community safety.
+
+## Presentation
+
+[View Full Presentation (PDF)](DisasterShield_SCAI2026.pdf)
