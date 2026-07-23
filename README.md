@@ -111,3 +111,11 @@ Made with care for innovation and community safety.
 
 [View Full Presentation (PDF)](DisasterShield_SCAI2026_Harsh_Parmar.pdf)
 
+
+## Project Evaluation Report
+
+[Download Full Report (PDF)](DisasterShield_Project_Report_SCAI2026.pdf)
+
+## Project Report
+
+[View Full Project Report (PDF)](DisasterShield_Project_Report_SCAI2026.pdf)
