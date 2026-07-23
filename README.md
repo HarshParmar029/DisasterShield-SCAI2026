@@ -116,6 +116,4 @@ Made with care for innovation and community safety.
 
 [Download Full Report (PDF)](DisasterShield_Project_Report_SCAI2026.pdf)
 
-## Project Report
 
-[View Full Project Report (PDF)](DisasterShield_Project_Report_SCAI2026.pdf)
